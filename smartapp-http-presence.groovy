@@ -17,7 +17,7 @@ preferences {
 	section("Router information") { 
 		input("destIp", "text", title: "IP", description: "The device IP", required: true)
     	input("destPort", "number", title: "Port", description: "The port you wish to connect", required: true)
-        input("path", "number", title: "Path", description: "HTTP path you wish to query", required: true)
+        input("path", "number", title: "Path", description: "HTTP path you wish to query (/update_clients.asp)", required: true)
     }
 	section("Which presence sensor..."){
 		input "presence", "capability.presenceSensor", multiple: false, required: true
@@ -33,7 +33,7 @@ preferences {
 		input "motions", "capability.motionSensor", multiple: false, required: false
 	}
     section("Or these contact sensors are activated..."){
-		input "motions", "capability.contactSensor", multiple: false, required: false
+		input "contacts", "capability.contactSensor", multiple: false, required: false
 	}
 }
 
@@ -49,7 +49,8 @@ def updated() {
 
 def initialized() {
     subscribe(switches, "switch",takeHandler)
-    subscribe(switches, "motion",takeHandler)
+    subscribe(motions, "motion",takeHandler)
+    subscribe(contacts, "motion",takeHandler)
     subscribe(location, null, lanResponseHandler, [filterEvents:false])
 }
 
