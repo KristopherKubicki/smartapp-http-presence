@@ -5,7 +5,7 @@
 definition(
     name: "HTTP Presence Detector",
     namespace: "KristopherKubicki",
-    author: "Kristopher Kubicki",
+    author: "kristopher@acm.org",
     description: "Monitors an HTTP page for a string, marking device present",
     category: "My Apps",
     iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
