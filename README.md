@@ -3,7 +3,7 @@ SmartThings mobile presence detection is limited to what the iOS, Android or Win
 
 This simple app tries to incrementally improve the presence detection by letting you poll a LAN web service for additional information.  For example, your router may publish a list of active MAC addresses, or another smart device might return additional presence information. 
 
-This app requires you to also update your mobile presence sensor to add a present() command.  <a href='https://github.com/KristopherKubicki/smartapp-http-presence/blob/master/smartapp-mobile-presence.groovy'>I have provided one</a> in this repo as well. 
+This app requires you to also update your mobile presence sensor to add a present() command.  <a href='https://github.com/KristopherKubicki/smartapp-http-presence/blob/master/device-mobile-presence.groovy'>I have provided one</a> in this repo as well. 
 
 License
 -------
