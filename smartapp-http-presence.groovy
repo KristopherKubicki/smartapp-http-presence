@@ -5,7 +5,7 @@
 definition(
     name: "HTTP Presence Detector",
     namespace: "KristopherKubicki",
-    author: "kristopher@acm.org",
+    author: "Kristopher Kubicki",
     description: "Monitors an HTTP page for a string, marking device present",
     category: "My Apps",
     iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
@@ -17,7 +17,7 @@ preferences {
 	section("Router information") { 
 		input("destIp", "text", title: "IP", description: "The device IP", required: true)
     	input("destPort", "number", title: "Port", description: "The port you wish to connect", required: true)
-        input("path", "number", title: "Path", description: "HTTP path you wish to query (/update_clients.asp)", required: true)
+        input("path", "text", title: "Path", description: "HTTP path you wish to query (/update_clients.asp)", required: true)
     }
 	section("Which presence sensor..."){
 		input "presence", "capability.presenceSensor", multiple: false, required: true
@@ -26,14 +26,10 @@ preferences {
 		input(name: "detectString", type: "text", title: "String", required: true)
 	}
     
-    section("Poll when this switch is activated..."){
-		input "switches", "capability.switch", multiple: false, required: false
-	}
-    section("Or these motion sensors are activated..."){
-		input "motions", "capability.motionSensor", multiple: false, required: false
-	}
-    section("Or these contact sensors are activated..."){
-		input "contacts", "capability.contactSensor", multiple: false, required: false
+    section("Poll when this event is activated..."){
+		input "switches", "capability.switch", multiple: true, required: false
+		input "motions", "capability.motionSensor", multiple: true, required: false
+		input "contacts", "capability.contactSensor", multiple: true, required: false
 	}
 }
 
@@ -50,7 +46,7 @@ def updated() {
 def initialized() {
     subscribe(switches, "switch",takeHandler)
     subscribe(motions, "motion",takeHandler)
-    subscribe(contacts, "motion",takeHandler)
+    subscribe(contacts, "contact",takeHandler)
     subscribe(location, null, lanResponseHandler, [filterEvents:false])
 }
 
